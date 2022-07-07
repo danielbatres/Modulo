@@ -112,10 +112,11 @@ from Articulos ar, Pedidos p, PedArt pr where ar.IdArticulo = pr.IdArticulo and 
 
 use BDEmpresa;
 
-select avg(Horas) as "Promedio General" from TrabajaEn;
-
-select e.IdEmpleado as "Codigo de empleado", e.NombreEmpleado as "Nombre Empleado", t.Horas as "Promedio de horas" 
-from Empleados e, TrabajaEn t where e.IdEmpleado = t.IdEmpleado and t.Horas >= 19;
+select e.IdEmpleado as "Codigo Empleado", e.NombreEmpleado as "Nombre empleado" , avg(Horas) as "Promedio general horas"  from Empleados e
+inner join TrabajaEn t
+on e.IdEmpleado = t.IdEmpleado
+group by e.IdEmpleado, e.NombreEmpleado
+having avg(horas) > (select avg(Horas) from TrabajaEn);
 
 /*
 
