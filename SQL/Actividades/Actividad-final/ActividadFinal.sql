@@ -80,7 +80,8 @@ order by Titulo, NombreEd desc;
 -- j) Obtenga una lista de los libros con el número total de copias existentes de cada uno. 
 
 select Titulo, sum(NumCopias) as "Copias" from Libros l 
-inner join CopiasLibros c on l.IdLibro = c.IdLibro group by Titulo
+inner join CopiasLibros c on l.IdLibro = c.IdLibro 
+group by Titulo
 
 -- k) Muestre por cada sucursal el numero total de copias que posee y ordenelas de
 -- menor a mayor.
