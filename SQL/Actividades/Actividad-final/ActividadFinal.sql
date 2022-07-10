@@ -98,3 +98,21 @@ inner join Editoriales e on e.CodEditorial = l.CodEditorial group by NombreEd;
 
 -- m) Para cada libro prestado por la sucursal Central, obtenga el titulo del libro, el nombre
 -- del lector y la direccion del lector.
+
+select l.Titulo as "Libro", lc.NombreLector as "Nombre Lector", 
+lc.DireccionLector as "Direccion Lector", s.NombreSucursal as "Sucursal"
+from Libros l, Lectores lc, Prestamos p, SucursalesBiblioteca s
+where l.IdLibro = p.IdLibro and lc.NumTarjeta = p.NumTarjeta and s.IdSucursal = p.IdSucursal and p.IdSucursal = 1;
+
+-- n) Obtenga los nombres de todos los lectores que no tengan libros en prestamo.
+
+select NombreLector from Lectores where not exists 
+(select * from Prestamos where lectores.NumTarjeta = Prestamos.NumTarjeta);
+
+
+/*
+
+	2. Considere el esquema relacional CONTROL DE PEDIDOS, realice las siguientes
+       consultas sobre los datos ocupando funciones de agregación:
+
+*/
