@@ -147,15 +147,25 @@ select NombreCliente as "Nombre Cliente", sum(Cantidad) as "Numero Pedidos", avg
 from Clientes c 
 inner join Pedidos p on c.IdCliente = p.IdCliente 
 inner join PedArt pd on pd.IdPedido = p.IdPedido 
-group by NombreCliente
+group by NombreCliente;
 
 -- f) Muestre el nombre de los clientes que generaron algun pedido los meses de Febrero
 -- y Marzo.
 
+select NombreCliente as "Cliente", IdPedido as "Pedido" from Clientes c, Pedidos p 
+where c.IdCliente = p.IdCliente and FechaPedido between '2009-02-01' and '2009-03-31';
+
 -- g) Obtenga la lista de los numeros de pedido para los pedidos que se sirvieron desde
 -- todos los almacenes que la empresa tiene en San Salvador.
 
+select count(Cantidad) as "Numero de Pedidos" from PedArt pd 
+inner join Envios e on pd.IdPedido = e.IdPedido 
+inner join Almacenes a on e.IdAlmacen = a.IdAlmacen where Ciudad = 'San Salvador';
+
 -- h) Muestre cual es el total del importe de los pedidos realizados para el mes de Marzo.
+
+select sum(TotalImporte) as "Importes Marzo" from Pedidos
+where FechaPedido between '2009-03-01' and '2009-03-31';
 
 -- i) Obtenga por cada cliente (con su codigo de cliente y nombre) el total del importe al
 -- que ascienden todos sus pedidos.
