@@ -86,3 +86,15 @@ group by Titulo
 -- k) Muestre por cada sucursal el numero total de copias que posee y ordenelas de
 -- menor a mayor.
 
+select NombreSucursal, sum(NumCopias) as "Copias" from CopiasLibros c 
+inner join SucursalesBiblioteca s on c.IdSucursal = s.IdSucursal 
+inner join Libros l on c.IdLibro = l.IdLibro 
+group by NombreSucursal order by "Copias" asc;
+
+-- l) Muestre el total de libros que posee cada editorial contenida en la biblioteca. 
+
+select NombreEd as "Editorial", count(IdLibro) as "Total Libros" from Libros l 
+inner join Editoriales e on e.CodEditorial = l.CodEditorial group by NombreEd;
+
+-- m) Para cada libro prestado por la sucursal Central, obtenga el titulo del libro, el nombre
+-- del lector y la direccion del lector.
