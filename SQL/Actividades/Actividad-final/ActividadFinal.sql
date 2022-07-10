@@ -230,21 +230,69 @@ where t.NumProy = 30;
 --d) Determine el menor y el mayor salario que existe para los empleados de la empresa
 -- y presente además cual es el promedio general de los salarios.
 
+select min(Salario) as "Salario Minimo", max(Salario) as "Salario Maximo", avg(Salario)
+as "Salario Promedio" from Empleados;
+
 -- e) Obtenga los nombres de todos los empleados de departamento 5 que trabajan mas
 -- de 10 horas por semana en el proyecto ‘ProductoX’
+
+select NombreEmpleado from Empleados 
+inner join TrabajaEn on Empleados.IdEmpleado = TrabajaEn.IdEmpleado 
+inner join Proyectos on Proyectos.NumProy = TrabajaEn.NumProy 
+where Horas > 10 and NDepto = 5 and NombreProy= 'ProductoX';
 
 -- f) Cite los nombres de todos los empleados que tienen una persona dependiente de
 -- ellos con su mismo nombre de pila.
 
+select NombreEmpleado from Empleados e
+inner join Dependientes d on e.IdEmpleado = d.IdEmpleado 
+where e.NombreEmpleado = d.Nombre;
+
 -- g) Muestre todos aquellos empleados en los que su nombre comience con el carácter
 -- ‘A’ pero que su nombre no exceda de 6 caracteres.
+
+select NombreEmpleado from Empleados where NombreEmpleado like 'A_____';
 
 -- h) Para cada proyecto, cite el nombre del proyecto y el total de horas por semana (de
 -- todos los empleados) invertidas en el proyecto.
 
+select NombreProy, (select sum(Horas) as "Total Horas" from TrabajaEn 
+where Proyectos.Numproy = TrabajaEn.numproy) from Proyectos;
+
 -- i) Obtenga los nombres de los empleados que trabajan en cada uno de los proyectos.
 
--- j) Obtenga el nombre de todos los empleados que no trabajan en ningún proyecto.
+-- j) Obtenga el nombre de todos los empleados que no trabajan en ningun proyecto.
+
+-- k) Para cada departamento, obtenga el nombre del departamento y el salario medio
+-- de todos los empleados que trabajan en el.
+
+-- l) Obtenga el salario medio de todos los empleados varones.
+
+-- m) Obtenga una lista de los empleados y los proyectos en los que trabajan, ordenados
+-- por departamento y dentro de cada departamento, alfabeticamente por apellido y
+-- nombre.
+
+-- n) Utilizando EXISTS, recupere los nombres de los empleados que no tienen familiares
+-- dependientes.
+
+-- o) Liste los nombres de los jefes que tienen por lo menos un familiar dependiente.
+
+-- p) Recupere los nombres de todos los empleados que no tienen supervisores.
+
+-- q) Recuperar el nombre y direccion de todos los empleados que trabajan para el
+-- departamento de investigacion (JOIN)
+
+-- r) De cada proyecto en el que trabajan mas de dos empleados, recupere su numero,
+-- su nombre y el numero de empleados que trabajan en el.
+
+-- s) ¿Cuantos empleados trabajan en el proyecto numero 30?
+
+-- t) Obtenga el Nombre, Fecha de nacimiento, Sexo, Salario y número de departamento
+-- de todos aquellos empleados cuyo apellido sea ‘Fernández’.
+
+-- u) Encuentre los nombres de todos los empleados supervisados por ‘Franklin Javier’.
+
+-- v) Obtenga el salario medio de todos los empleados que sean mujeres.
 
 /*
 
