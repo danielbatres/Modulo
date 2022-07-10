@@ -289,7 +289,7 @@ select NombreEmpleado, Apellido, NombreProy, NombreDepto from Empleados e
 inner join Departamentos d on d.NDepto = e.NDepto 
 inner join TrabajaEn t on e.IdEmpleado = t.IdEmpleado 
 inner join Proyectos p on p.NumProy = t.NumProy
-order by NombreDepto, Apellido, NombreEmpleado asc;
+order by NombreDepto, Apellido, NombreEmpleado asc; 
 
 -- n) Utilizando EXISTS, recupere los nombres de los empleados que no tienen familiares
 -- dependientes.
@@ -339,7 +339,7 @@ from Empleados where Apellido like '%Fernández%';
 -- u) Encuentre los nombres de todos los empleados supervisados por ‘Franklin Javier’.
 
 select NombreEmpleado from Empleados where IdSupervisor = 
-(select IdEmpleado from Empleados where NombreEmpleado = 'Franklin Javier');
+(select IdEmpleado from Empleados where NombreEmpleado = 'Franklin Javier'); 
 
 -- v) Obtenga el salario medio de todos los empleados que sean mujeres.
 
