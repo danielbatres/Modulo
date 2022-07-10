@@ -261,38 +261,89 @@ where Proyectos.Numproy = TrabajaEn.numproy) from Proyectos;
 
 -- i) Obtenga los nombres de los empleados que trabajan en cada uno de los proyectos.
 
+select e.NombreEmpleado, p.NombreProy from Empleados e 
+inner join TrabajaEn t on e.IdEmpleado = t.IdEmpleado 
+inner join Proyectos p on p.NumProy = t.NumProy;
+
 -- j) Obtenga el nombre de todos los empleados que no trabajan en ningun proyecto.
+
+select NombreEmpleado, Apellido from Empleados 
+where not exists (select * from TrabajaEn where Empleados.IdEmpleado = TrabajaEn.IdEmpleado);
 
 -- k) Para cada departamento, obtenga el nombre del departamento y el salario medio
 -- de todos los empleados que trabajan en el.
 
+select NombreDepto, round(avg(Salario), 2) as "Salario Promedio" from Empleados e 
+inner join Departamentos d on d.NDepto = e.NDepto 
+group by NombreDepto;
+
 -- l) Obtenga el salario medio de todos los empleados varones.
+
+select round(avg(Salario), 2) as "Salario Promedio Hombre" from Empleados where Sexo='M';
 
 -- m) Obtenga una lista de los empleados y los proyectos en los que trabajan, ordenados
 -- por departamento y dentro de cada departamento, alfabeticamente por apellido y
 -- nombre.
 
+select NombreEmpleado, Apellido, NombreProy, NombreDepto from Empleados e 
+inner join Departamentos d on d.NDepto = e.NDepto 
+inner join TrabajaEn t on e.IdEmpleado = t.IdEmpleado 
+inner join Proyectos p on p.NumProy = t.NumProy
+order by NombreDepto, Apellido, NombreEmpleado asc;
+
 -- n) Utilizando EXISTS, recupere los nombres de los empleados que no tienen familiares
 -- dependientes.
 
+select NombreEmpleado from Empleados 
+where not exists (select * from Dependientes where Empleados.IdEmpleado = Dependientes.IdEmpleado);
+
 -- o) Liste los nombres de los jefes que tienen por lo menos un familiar dependiente.
 
+select distinct e.NombreEmpleado from Empleados e 
+inner join Departamentos d on e.IdEmpleado = d.IdJefe 
+inner join Dependientes dt on dt.IdEmpleado = d.IdJefe;
+
 -- p) Recupere los nombres de todos los empleados que no tienen supervisores.
+
+select NombreEmpleado from Empleados where IdSupervisor = null;
 
 -- q) Recuperar el nombre y direccion de todos los empleados que trabajan para el
 -- departamento de investigacion (JOIN)
 
+select NombreEmpleado as "Nombre Empleado", Direccion from Empleados e
+inner join Departamentos d on d.NDepto = e.NDepto
+where NombreDepto = 'Investigación';
+
 -- r) De cada proyecto en el que trabajan mas de dos empleados, recupere su numero,
 -- su nombre y el numero de empleados que trabajan en el.
 
+select NombreProy as "Nombre Proyecto", NumProy as "Numero Proyecto", 
+(select count(IdEmpleado) from TrabajaEn where Proyectos.NumProy = TrabajaEn.NumProy) as "Empleados" 
+from Proyectos
+where (select count(IdEmpleado) from TrabajaEn
+where Proyectos.NumProy = TrabajaEn.NumProy) > 2;
+
 -- s) ¿Cuantos empleados trabajan en el proyecto numero 30?
+
+select count(e.IdEmpleado) as "Empleados" from Empleados e
+inner join TrabajaEn t on t.IdEmpleado = e.IdEmpleado 
+inner join Proyectos p on p.NumProy = t.NumProy 
+where p.NumProy = 30;
 
 -- t) Obtenga el Nombre, Fecha de nacimiento, Sexo, Salario y número de departamento
 -- de todos aquellos empleados cuyo apellido sea ‘Fernández’.
 
+select NombreEmpleado as "Nombre", FechaNacimiento as "Fecha de Nacimiento", Sexo, Salario, Ndepto 
+from Empleados where Apellido like '%Fernández%';
+
 -- u) Encuentre los nombres de todos los empleados supervisados por ‘Franklin Javier’.
 
+select NombreEmpleado from Empleados where IdSupervisor = 
+(select IdEmpleado from Empleados where NombreEmpleado = 'Franklin Javier');
+
 -- v) Obtenga el salario medio de todos los empleados que sean mujeres.
+
+select round(avg(Salario), 2) as "Salario Promedio Mujeres" from Empleados where Sexo='F';
 
 /*
 
