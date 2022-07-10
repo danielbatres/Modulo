@@ -109,7 +109,6 @@ where l.IdLibro = p.IdLibro and lc.NumTarjeta = p.NumTarjeta and s.IdSucursal = 
 select NombreLector from Lectores where not exists 
 (select * from Prestamos where lectores.NumTarjeta = Prestamos.NumTarjeta);
 
-
 /*
 
 	2. Considere el esquema relacional CONTROL DE PEDIDOS, realice las siguientes
