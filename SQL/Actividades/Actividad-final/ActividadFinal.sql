@@ -137,7 +137,8 @@ where IdCliente = 000123;
 
 select count(Cantidad) as "Pedidos", FechaEnvio as "Fecha Envio" from PedArt pd
 inner join Envios e on pd.IdPedido = E.IdPedido where IdAlmacen = 2 
-group by FechaEnvio;
+group by FechaEnvio; 
+
 -- e) Obtenga una lista CLIENTE, NUM_PEDIDOS, MEDIA_IMPORTE_PED donde la
 -- columna de en medio es el número total de pedidos realizados por el cliente y la
 -- última es la media del importe de todos los pedidos del cliente. 
