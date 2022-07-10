@@ -132,12 +132,21 @@ select max(PrecioUni) as "Mayor costo" from Articulos;
 select sum(TotalImporte) as "Importe total" from Pedidos 
 where IdCliente = 000123;
 
--- d) Obtenga los números de pedido y fechas de envío de todos los pedidos servidos
--- desde el almacén con numero 2
+-- d) Obtenga los numeros de pedido y fechas de envio de todos los pedidos servidos
+-- desde el almacen con numero 2
 
+select count(Cantidad) as "Pedidos", FechaEnvio as "Fecha Envio" from PedArt pd
+inner join Envios e on pd.IdPedido = E.IdPedido where IdAlmacen = 2 
+group by FechaEnvio;
 -- e) Obtenga una lista CLIENTE, NUM_PEDIDOS, MEDIA_IMPORTE_PED donde la
 -- columna de en medio es el número total de pedidos realizados por el cliente y la
--- última es la media del importe de todos los pedidos del cliente.
+-- última es la media del importe de todos los pedidos del cliente. 
+
+select NombreCliente as "Nombre Cliente", sum(Cantidad) as "Numero Pedidos", avg(TotalImporte) as "Promedio Importe Pedido" 
+from Clientes c 
+inner join Pedidos p on c.IdCliente = p.IdCliente 
+inner join PedArt pd on pd.IdPedido = p.IdPedido 
+group by NombreCliente
 
 -- f) Muestre el nombre de los clientes que generaron algun pedido los meses de Febrero
 -- y Marzo.
