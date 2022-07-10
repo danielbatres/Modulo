@@ -160,7 +160,8 @@ where c.IdCliente = p.IdCliente and FechaPedido between '2009-02-01' and '2009-0
 
 select count(Cantidad) as "Numero de Pedidos" from PedArt pd 
 inner join Envios e on pd.IdPedido = e.IdPedido 
-inner join Almacenes a on e.IdAlmacen = a.IdAlmacen where Ciudad = 'San Salvador';
+inner join Almacenes a on e.IdAlmacen = a.IdAlmacen
+where Ciudad = 'San Salvador';
 
 -- h) Muestre cual es el total del importe de los pedidos realizados para el mes de Marzo.
 
