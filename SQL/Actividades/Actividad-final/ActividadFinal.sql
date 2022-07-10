@@ -184,7 +184,7 @@ select NombreArtic, PrecioUni from Articulos order by PrecioUni desc;
 -- k) Cual fue el importe total de los pedidos realizados el mes de JUNIO de 2009.
 
 select sum(TotalImporte) as "Importe Junio" from Pedidos 
-where FechaPedido between '2009-06-01' and '2009-06-31'; -- No hay pedidos en Junio.
+where FechaPedido between '2009-06-01' and '2009-06-30';
 
 -- l) Muestre el total de productos que se solicitaron para el pedido ‘P00006’.
 
