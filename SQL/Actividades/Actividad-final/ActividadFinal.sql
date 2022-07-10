@@ -113,6 +113,6 @@ select NombreLector from Lectores where not exists
 /*
 
 	2. Considere el esquema relacional CONTROL DE PEDIDOS, realice las siguientes
-       consultas sobre los datos ocupando funciones de agregación:
+         consultas sobre los datos ocupando funciones de agregación:
 
 */
