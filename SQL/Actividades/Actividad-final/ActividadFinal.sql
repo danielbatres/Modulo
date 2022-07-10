@@ -170,12 +170,27 @@ where FechaPedido between '2009-03-01' and '2009-03-31';
 -- i) Obtenga por cada cliente (con su codigo de cliente y nombre) el total del importe al
 -- que ascienden todos sus pedidos.
 
+select c.IdCliente as "ID Cliente", NombreCliente as "Nombre Cliente", sum(TotalImporte) as "Total Importe"
+from Clientes c, Pedidos p 
+where c.IdCliente = p.IdCliente 
+group by c.IdCliente, NombreCliente;
+
 -- j) Muestre una lista de articulos ordenados por nombre y ordene cada artículo por su
 -- precio de mayor a menor.
 
+select NombreArtic, PrecioUni from Articulos order by PrecioUni desc;
+
 -- k) Cual fue el importe total de los pedidos realizados el mes de JUNIO de 2009.
+
+select sum(TotalImporte) as "Importe Junio" from Pedidos 
+where FechaPedido between '2009-06-01' and '2009-06-31'; -- No hay pedidos en Junio.
 
 -- l) Muestre el total de productos que se solicitaron para el pedido ‘P00006’.
 
--- m) Muestre el nombre de los clientes que no hayan generado ningún pedido para el
--- mes de Febrero.
+select count(Cantidad) as "Cantidad Producto" from PedArt pd 
+inner join Envios e on pd.IdPedido = e.IdPedido where pd.IdPedido ='000006';
+
+-- m) Muestre el nombre de los clientes que no hayan generado ningun pedido para el
+-- mes de Febrero.select distinct NombreCliente as "Cliente" from Clientes c 
+inner join Pedidos p on c.IdCliente = p.IdCliente 
+where FechaPedido between '2009-02-28' and '2009-03-30';
