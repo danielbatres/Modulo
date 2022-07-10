@@ -115,3 +115,38 @@ select NombreLector from Lectores where not exists
            consultas sobre los datos ocupando funciones de agregación:
 
 */
+
+-- a) ¿Cual es el articulo con menor costo de la tabla ARTICULOS?
+
+-- b) ¿Cual es el artículo con mayor costo?
+
+-- c) ¿Cual es el importe total de todos los pedidos realizados por el cliente con ID_Cliente
+-- = ‘000123’?
+
+-- d) Obtenga los números de pedido y fechas de envío de todos los pedidos servidos
+-- desde el almacén con numero 2
+
+-- e) Obtenga una lista CLIENTE, NUM_PEDIDOS, MEDIA_IMPORTE_PED donde la
+-- columna de en medio es el número total de pedidos realizados por el cliente y la
+-- última es la media del importe de todos los pedidos del cliente.
+
+-- f) Muestre el nombre de los clientes que generaron algun pedido los meses de Febrero
+-- y Marzo.
+
+-- g) Obtenga la lista de los numeros de pedido para los pedidos que se sirvieron desde
+-- todos los almacenes que la empresa tiene en San Salvador.
+
+-- h) Muestre cual es el total del importe de los pedidos realizados para el mes de Marzo.
+
+-- i) Obtenga por cada cliente (con su codigo de cliente y nombre) el total del importe al
+-- que ascienden todos sus pedidos.
+
+-- j) Muestre una lista de articulos ordenados por nombre y ordene cada artículo por su
+-- precio de mayor a menor.
+
+-- k) Cual fue el importe total de los pedidos realizados el mes de JUNIO de 2009.
+
+-- l) Muestre el total de productos que se solicitaron para el pedido ‘P00006’.
+
+-- m) Muestre el nombre de los clientes que no hayan generado ningún pedido para el
+-- mes de Febrero.
