@@ -196,10 +196,13 @@ inner join Envios e on pd.IdPedido = e.IdPedido where pd.IdPedido ='000006';
 
 select distinct NombreCliente as "Cliente" from Clientes c 
 inner join Pedidos p on c.IdCliente = p.IdCliente 
-where FechaPedido between '2009-02-28' and '2009-03-30';/*
+where FechaPedido between '2009-02-28' and '2009-03-30'; 
+
+/*
 
 	3. Considere el esquema relacional EMPRESA correspondiente al tema 3 realice las
-       siguientes consultas sobre los datos ocupando funciones de agregacion:   
+       siguientes consultas sobre los datos ocupando funciones de agregacion:
+
 */
 
 use BDEmpresa;
