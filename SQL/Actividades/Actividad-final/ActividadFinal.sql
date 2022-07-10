@@ -153,14 +153,14 @@ group by NombreCliente;
 -- y Marzo.
 
 select NombreCliente as "Cliente", IdPedido as "Pedido" from Clientes c, Pedidos p 
-where c.IdCliente = p.IdCliente and FechaPedido between '2009-02-01' and '2009-03-31';
+where c.IdCliente = p.IdCliente and FechaPedido between '2009-02-01' and '2009-03-31';
 
 -- g) Obtenga la lista de los numeros de pedido para los pedidos que se sirvieron desde
 -- todos los almacenes que la empresa tiene en San Salvador.
 
 select count(Cantidad) as "Numero de Pedidos" from PedArt pd 
 inner join Envios e on pd.IdPedido = e.IdPedido 
-inner join Almacenes a on e.IdAlmacen = a.IdAlmacen where Ciudad = 'San Salvador';
+inner join Almacenes a on e.IdAlmacen = a.IdAlmacen where Ciudad = 'San Salvador';
 
 -- h) Muestre cual es el total del importe de los pedidos realizados para el mes de Marzo.
 
@@ -191,6 +191,8 @@ select count(Cantidad) as "Cantidad Producto" from PedArt pd
 inner join Envios e on pd.IdPedido = e.IdPedido where pd.IdPedido ='000006';
 
 -- m) Muestre el nombre de los clientes que no hayan generado ningun pedido para el
--- mes de Febrero.select distinct NombreCliente as "Cliente" from Clientes c 
+-- mes de Febrero.
+
+select distinct NombreCliente as "Cliente" from Clientes c 
 inner join Pedidos p on c.IdCliente = p.IdCliente 
 where FechaPedido between '2009-02-28' and '2009-03-30';
