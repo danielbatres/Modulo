@@ -116,12 +116,21 @@ select NombreLector from Lectores where not exists
 
 */
 
+use BDControlPedidos;
+
 -- a) ¿Cual es el articulo con menor costo de la tabla ARTICULOS?
+
+select min(PrecioUni) as "Menor costo" from Articulos;
 
 -- b) ¿Cual es el artículo con mayor costo?
 
+select max(PrecioUni) as "Mayor costo" from Articulos;
+
 -- c) ¿Cual es el importe total de todos los pedidos realizados por el cliente con ID_Cliente
 -- = ‘000123’?
+
+select sum(TotalImporte) as "Importe total" from Pedidos 
+where IdCliente = 000123;
 
 -- d) Obtenga los números de pedido y fechas de envío de todos los pedidos servidos
 -- desde el almacén con numero 2
