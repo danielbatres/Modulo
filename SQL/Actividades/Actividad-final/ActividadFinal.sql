@@ -201,7 +201,7 @@ where FechaPedido between '2009-02-28' and '2009-03-30';
 /*
 
 	3. Considere el esquema relacional EMPRESA correspondiente al tema 3 realice las
-       siguientes consultas sobre los datos ocupando funciones de agregacion:
+           siguientes consultas sobre los datos ocupando funciones de agregacion:
 
 */
 
