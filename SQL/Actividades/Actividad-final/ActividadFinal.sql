@@ -196,4 +196,30 @@ inner join Envios e on pd.IdPedido = e.IdPedido where pd.IdPedido ='000006';
 
 select distinct NombreCliente as "Cliente" from Clientes c 
 inner join Pedidos p on c.IdCliente = p.IdCliente 
-where FechaPedido between '2009-02-28' and '2009-03-30';
+where FechaPedido between '2009-02-28' and '2009-03-30';/*	3. Considere el esquema relacional EMPRESA correspondiente al tema 3 realice las
+       siguientes consultas sobre los datos ocupando funciones de agregacion:*/use BDEmpresa;-- a) Genere un listado que muestre todos los empleados cuyas horas trabajadas sean
+-- superiores a las del empleado con ID_Emp= ‘666884444’
+
+-- b) ¿Cuantos empleados trabajan en el departamento con NDepto= 5?
+
+-- c) ¿Cual es el total de horas invertidas por los empleados en el proyecto con
+-- NumProy=30?
+
+--d) Determine el menor y el mayor salario que existe para los empleados de la empresa
+-- y presente además cual es el promedio general de los salarios.
+
+-- e) Obtenga los nombres de todos los empleados de departamento 5 que trabajan mas
+-- de 10 horas por semana en el proyecto ‘ProductoX’
+
+-- f) Cite los nombres de todos los empleados que tienen una persona dependiente de
+-- ellos con su mismo nombre de pila.
+
+-- g) Muestre todos aquellos empleados en los que su nombre comience con el carácter
+-- ‘A’ pero que su nombre no exceda de 6 caracteres.
+
+-- h) Para cada proyecto, cite el nombre del proyecto y el total de horas por semana (de
+-- todos los empleados) invertidas en el proyecto.
+
+-- i) Obtenga los nombres de los empleados que trabajan en cada uno de los proyectos.
+
+-- j) Obtenga el nombre de todos los empleados que no trabajan en ningún proyecto.
