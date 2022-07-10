@@ -210,7 +210,15 @@ use BDEmpresa;
 -- a) Genere un listado que muestre todos los empleados cuyas horas trabajadas sean
 -- superiores a las del empleado con ID_Emp= ‘666884444’
 
+select NombreEmpleado as "Nombre Empleado", Horas from Empleados 
+inner join TrabajaEn on Empleados.IdEmpleado = TrabajaEn.IdEmpleado 
+where Horas < (select sum(Horas) from TrabajaEn where IdEmpleado = 666884444);
+
 -- b) ¿Cuantos empleados trabajan en el departamento con NDepto= 5?
+
+select count(ld.NDepto) as "Empleados" from Departamentos d 
+inner join LocalizacionesDepto ld on d.NDepto = ld.NDepto 
+where ld.NDepto = 5;
 
 -- c) ¿Cual es el total de horas invertidas por los empleados en el proyecto con
 -- NumProy=30?
