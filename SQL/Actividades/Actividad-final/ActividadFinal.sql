@@ -223,6 +223,10 @@ where ld.NDepto = 5;
 -- c) ¿Cual es el total de horas invertidas por los empleados en el proyecto con
 -- NumProy=30?
 
+select sum(t.Horas) as "Horas Invertidas" from TrabajaEn t 
+inner join Proyectos p on p.NumProy = t.NumProy
+where t.NumProy = 30;
+
 --d) Determine el menor y el mayor salario que existe para los empleados de la empresa
 -- y presente además cual es el promedio general de los salarios.
 
