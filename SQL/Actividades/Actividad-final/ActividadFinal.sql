@@ -16,3 +16,67 @@
 	   ocupando funciones de agregación:
 
 */
+
+use BDBiblioteca;
+
+-- a) ¿Cuántos libros posee actualmente la sucursal Santa Tecla de la biblioteca?
+
+select count(IdLibro) as "Libros" from CopiasLibros where IdSucursal = 2;
+
+-- b) ¿Cuántos libros de la editorial PEARSON existen toda la biblioteca?
+
+select NombreEd, CodEditorial from Editoriales where NombreEd = 'Pearson';
+select count(IdLibro) as "Libros" from Libros where CodEditorial = 100006;
+
+-- c) Cuantos prestamos ha hecho hasta el momento la sucursal Central de la biblioteca.
+
+select count(IdPrestamo) as "Prestamos" from Prestamos where IdSucursal = 1;
+
+-- d) ¿Cuantas copias del libro ‘PROGRAMACION DE GRAFICOS 3D’ posee la 
+-- biblioteca de la sucursal Santa Tecla?
+
+select sum(NumCopias) as "Copias libro" from CopiasLibros c
+inner join SucursalesBiblioteca s on c.IdSucursal = s.IdSucursal 
+inner join Libros l on c.IdLibro = l.IdLibro
+where c.IdSucursal = 2 and titulo like '%GRAFICOS%';
+
+-- e) ¿Cuántas copias del libro ‘PROGRAMACION DE GRAFICOS 3D’ posee cada una
+-- de las sucursales de la biblioteca?
+
+select nombreSucursal as "Nombre Sucursal", sum(NumCopias) as "Copias" from CopiasLibros c 
+inner join SucursalesBiblioteca s on c.IdSucursal = s.IdSucursal 
+inner join Libros l on c.IdLibro = l.IdLibro 
+where titulo like '%GRAFICOS%' group by NombreSucursal;
+
+-- f) Para cada sucursal de biblioteca, obtenga su nombre y el código total de libros que
+-- ha prestado hasta hoy.
+
+select nombreSucursal as "Nombre Sucursal", count(IdPrestamo) as "Codigo Total" from SucursalesBiblioteca s 
+inner join Prestamos p on s.IdSucursal = p.IdSucursal
+where FechaSalida between '2008-12-31' and '2022-07-10' group by NombreSucursal;
+
+-- g) De todos los lectores que han prestado más de dos libros, obtenga sus nombres,
+-- direcciones y el número total de libros prestados hasta la fecha.
+
+select NombreLector as "Nombre Lector", DireccionLector as "Direccion Lector",
+(select count(*) from Prestamos where Prestamos.NumTarjeta = Lectores.NumTarjeta) as "Prestados" from Lectores
+where (select count(*) from Prestamos 
+where FechaSalida between '2008-12-31' and '2022-07-10' and Lectores.NumTarjeta = Prestamos.NumTarjeta) > 2;
+
+-- h) Genere un listado con el nombre de libro y el nombre de lector de todos aquellos
+-- libros que se hayan prestado entre el ‘01/03/2009’ y el ‘30/04/2009’
+
+select l.Titulo as "Nombre Libro", lc.NombreLector "Nombre Lector", p.FechaSalida as "Fecha Salida" 
+from Libros l, Lectores lc, prestamos p
+where l.IdLibro = p.IdLibro and lc.NumTarjeta = p.NumTarjeta and p.FechaSalida between '2009-03-01' and '2009-04-30';
+
+-- i) Genere una lista con todos los libros ordenados alfabeticamente por titulo y dentro
+-- de cada titulo ordenado por editorial.
+
+select l.Titulo as "Nombre libro", e.NombreEd as "Editorial" from Libros l
+inner join Editoriales e on e.CodEditorial = l.CodEditorial
+order by Titulo, NombreEd desc;
+
+-- j) Obtenga una lista de los libros con el número total de copias existentes de cada uno.select Titulo, sum(NumCopias) as "Copias" from Libros l 
+inner join CopiasLibros c on l.IdLibro = c.IdLibro group by Titulo-- k) Muestre por cada sucursal el numero total de copias que posee y ordenelas de
+-- menor a mayor.
