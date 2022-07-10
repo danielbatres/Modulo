@@ -233,3 +233,9 @@ use BDEmpresa;
 -- i) Obtenga los nombres de los empleados que trabajan en cada uno de los proyectos.
 
 -- j) Obtenga el nombre de todos los empleados que no trabajan en ningún proyecto.
+
+/*
+
+	Vease referencia: Repositorio( https://github.com/danielbatres/Modulos/blob/main/SQL/Actividades/Actividad-final/ActividadFinal.sql )
+
+*/
