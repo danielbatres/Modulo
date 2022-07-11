@@ -143,7 +143,7 @@ group by FechaEnvio;
 -- columna de en medio es el número total de pedidos realizados por el cliente y la
 -- última es la media del importe de todos los pedidos del cliente. 
 
-select NombreCliente as "Nombre Cliente", sum(Cantidad) as "Numero Pedidos", avg(TotalImporte) as "Promedio Importe Pedido" 
+select NombreCliente as "Nombre Cliente", sum(Cantidad) as "Numero Pedidos", round(avg(TotalImporte), 2) as "Promedio Importe Pedido" 
 from Clientes c 
 inner join Pedidos p on c.IdCliente = p.IdCliente 
 inner join PedArt pd on pd.IdPedido = p.IdPedido 
